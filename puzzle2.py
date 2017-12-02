@@ -1,4 +1,4 @@
-with open('puzzle2.txt') as f:
+with open('files/puzzle2.txt') as f:
     file = f.readlines()
 
 sum = 0
