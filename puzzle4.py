@@ -8,7 +8,7 @@ non_anagram_passphrases = 0
 
 for line in file:
 	words = line[:len(line) - 1].split(" ")
-	words_sorted = [''.join(sorted(word)) for word in line[:len(line) - 1].split(" ")]
+	words_sorted = [''.join(sorted(word)) for word in words]
 	my_set = Set(words)
 	my_sorted_set = Set(words_sorted)
 	if len(my_set) == len(words):
