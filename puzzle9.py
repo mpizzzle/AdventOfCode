@@ -7,6 +7,7 @@ garbage = False
 skip = False
 depth = 0
 total = 0
+garbage_characters = 0
 
 for char in stream:
     if not garbage:
@@ -24,8 +25,10 @@ for char in stream:
                 continue
             if char == '>':
                 garbage = False
+            else:
+                garbage_characters += 1
         else:
             skip = False
 
 print total
-print depth
+print garbage_characters
