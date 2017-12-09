@@ -10,16 +10,10 @@ total = 0
 garbage_characters = 0
 
 for char in stream:
-    if not garbage:
-        if char == '{':
-            depth += 1
-            total += depth
-        if char == '}':
-            depth -= 1
-        if char == '<':
-            garbage = True
-    else:
-        if not skip:
+    if garbage:
+        if skip:
+            skip = False
+        else:
             if char == '!':
                 skip = True
                 continue
@@ -27,8 +21,14 @@ for char in stream:
                 garbage = False
             else:
                 garbage_characters += 1
-        else:
-            skip = False
+    else:
+        if char == '{':
+            depth += 1
+            total += depth
+        if char == '}':
+            depth -= 1
+        if char == '<':
+            garbage = True
 
 print total
 print garbage_characters
