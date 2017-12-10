@@ -45,13 +45,13 @@ print candidate
 def traverse_totals(node):
     if node.children == None:
         return node.weight
-    else:
-        weights = [traverse_totals(node.children[i]) for i in range(len(node.children))]
-        if len(Set(weights)) != 1:
-            for idx, weight in enumerate(weights):
-                if weights.count(weight) == 1:
-                    s = list(Set(weights))
-                    print node.children[idx].weight + s[0] - s[1]
-        return node.weight + sum(weights)
+
+    weights = [traverse_totals(node.children[i]) for i in range(len(node.children))]
+    if len(Set(weights)) != 1:
+        for idx, weight in enumerate(weights):
+            if weights.count(weight) == 1:
+                s = list(Set(weights))
+                print node.children[idx].weight + s[0] - s[1]
+    return node.weight + sum(weights)
 
 traverse_totals(my_dict[candidate])
