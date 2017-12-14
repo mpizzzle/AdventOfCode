@@ -1,5 +1,3 @@
-from sets import Set
-
 with open('files/puzzle12.txt') as f:
     programs = f.readlines()
 
