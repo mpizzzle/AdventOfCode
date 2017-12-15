@@ -27,17 +27,7 @@ disk = [knot_hash([ord(c) for c in "amgozmfv-" + str(i)]) for i in range(128)]
 
 print sum([binary_hash[c] for c in "".join(disk)])
 
-binary_disk = ["".join(["".join([str(int(int(c, 16) & 2**i > 0)) for i in reversed(range(4))]) for c in row]) for row in disk]
-disk_hash = {}
-network = []
-
-print binary_disk
-
-for x in range(128):
-    for y in range(128):
-        disk_hash[str(x) + ',' + str(y)] = int(binary_disk[x][y])
-
-def traverse(node):
+def traverse(node, network):
     network.append(node)
     x_y = [int(n) for n in node.split(',')]
     neighbours = [str(x_y[0]) + ',' + str(x_y[1] - 1), str(x_y[0]) + ',' + str(x_y[1] + 1), str(x_y[0] - 1) + ',' + str(x_y[1]), str(x_y[0] + 1) + ',' + str(x_y[1])]
@@ -45,14 +35,21 @@ def traverse(node):
         if neighbour not in network:
             if neighbour in disk_hash:
                 if disk_hash[neighbour]:
-                    traverse(neighbour)
+                    traverse(neighbour, network)
 
+network = []
 size_of_network = 0
 network_count = 0
+binary_disk = ["".join(["".join([str(int(int(c, 16) & 2**i > 0)) for i in reversed(range(4))]) for c in row]) for row in disk]
+disk_hash = {}
+
+for x in range(128):
+    for y in range(128):
+        disk_hash[str(x) + ',' + str(y)] = int(binary_disk[x][y])
 
 for node in disk_hash.keys():
     if disk_hash[node] and node not in network:
-        traverse(node)
+        traverse(node, network)
         if len(network) > size_of_network:
             size_of_network = len(network)
             network_count += 1
