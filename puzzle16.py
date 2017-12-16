@@ -3,8 +3,10 @@ with open('files/puzzle16.txt') as f:
 
 programs = list("abcdefghijklmnop")
 print "".join(programs)
+permutations = []
 
 for d in range(1, 1000):
+    permutations.append("".join(programs))
     for move in moves:
         if move[0] == 's':
             programs = programs[len(programs) - int(move[1:]):] + programs[:len(programs) - int(move[1:])]
@@ -15,11 +17,7 @@ for d in range(1, 1000):
             partners = move[1:].split('/')
             i, j = programs.index(partners[0]), programs.index(partners[1])
             programs[i], programs[j] = programs[j], programs[i]
-    print "".join(programs)
     if "".join(programs) == "abcdefghijklmnop":
         break
-    if d == 40:
-        print "^^^^^^^^^^^^^^^^^^"
 
-print d
-print 1000000000 % d
+print permutations[1000000000 % d]
