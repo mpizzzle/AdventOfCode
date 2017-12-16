@@ -2,7 +2,6 @@ with open('files/puzzle16.txt') as f:
     moves = f.read().split(',')
 
 programs = list("abcdefghijklmnop")
-print "".join(programs)
 permutations = []
 
 for d in range(1, 1000):
@@ -20,4 +19,5 @@ for d in range(1, 1000):
     if "".join(programs) == "abcdefghijklmnop":
         break
 
+print permutations[1]
 print permutations[1000000000 % d]
