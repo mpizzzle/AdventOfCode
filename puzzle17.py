@@ -11,7 +11,7 @@ print spinlock_buffer[ptr + 1]
 
 ptr = 0
 
-for i in range(1, 50000000):
+for i in range(1, 50000001):
     ptr = ((ptr + step) % i) + 1
     if ptr == 1:
         print i
