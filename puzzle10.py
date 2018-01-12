@@ -1,7 +1,13 @@
+import sys
+
 with open('files/puzzle10.txt') as f:
     blep = f.read()
     puzzle_input = [int(c) for c in blep.split(',')]
-    puzzle_ascii = [ord(c) for c in blep[:len(blep) - 1]]
+    puzzle_ascii = ""
+    if len(sys.argv) > 1:
+        puzzle_ascii = [ord(c) for c in sys.argv[1]]
+    else:
+        puzzle_ascii = [ord(c) for c in blep[:len(blep) - 1]]
     puzzle_ascii.extend([17, 31, 73, 47, 23])
 
 def round(this_input, this_list, skip, pos):
@@ -27,4 +33,4 @@ knot_hash = []
 for block in [my_list[i:i + 16] for i in range(0, len(my_list), 16)]:
     knot_hash.append(chr(reduce(lambda x, y: x ^ y, block)))
 
-print "".join(knot_hash).encode("hex")
+print "".join(knot_hash).encode("base64")
