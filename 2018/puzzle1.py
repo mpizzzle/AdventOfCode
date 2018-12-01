@@ -1,8 +1,6 @@
 from sets import Set
 
-with open('files/puzzle1.txt') as f:
-    file = f.readlines()
-
+file = open('files/puzzle1.txt').readlines()
 frequency = 0
 frequencies = Set()
 frequency_found = False
