@@ -1,4 +1,4 @@
-file = [s[0:len(s) - 1] for s in open('files/puzzle2.txt').readlines()]
+file = [s[0:-1] for s in open('files/puzzle2.txt').readlines()]
 two_count = 0
 three_count = 0
 
