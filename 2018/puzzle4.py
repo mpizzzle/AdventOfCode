@@ -18,7 +18,6 @@ for line in file:
 
 sleepiest_guard = ""
 current_total = 0
-
 most_predictable_guard = ""
 current_frequency = 0
 
