@@ -1,8 +1,5 @@
 (define (read-lines . args)
-  (let ((p (cond ((null? args) (current-input-port))
-                 ((port? (car args)) (car args))
-                 ((string? (car args)) (open-input-file (car args)))
-                 (else (error 'read-lines "bad argument")))))
+  (let ((p (cond ((string? (car args)) (open-input-file (car args))))))
     (let loop ((line (read-line p)) (lines (list)))
       (if (eof-object? line)
         (begin
@@ -31,6 +28,6 @@
         (part-2 x x (cdr b) c))
       (part-2 x (cdr a) b c))))
 
-(define entries (read-lines "files/1.txt"))
-(part-1 entries entries entries)
-(part-2 entries entries entries entries)
+(define i (read-lines "files/1.txt"))
+(part-1 i i i)
+(part-2 i i i i)
