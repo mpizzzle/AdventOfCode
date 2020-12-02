@@ -1,13 +1,3 @@
-(define (read-lines . args)
-  (let ((p (cond ((string? (car args)) (open-input-file (car args))))))
-    (let loop ((line (read-line p)) (lines (list)))
-      (if (eof-object? line)
-        (begin
-          (if (and (pair? args) (string? (car args)))
-            (close-input-port p))
-          (reverse lines))
-        (loop (read-line p) (cons (string->number line) lines))))))
-
 (define (part-1 x a b)
   (if (and (not (null? a)) (= 2020 (+ (car a) (car b))))
     (list (car a) (car b) (* (car a) (car b)))
@@ -28,6 +18,8 @@
         (part-2 x x (cdr b) c))
       (part-2 x (cdr a) b c))))
 
-(define i (read-lines "files/1.txt"))
-(part-1 i i i)
-(part-2 i i i i)
+(load "read_lines.scm")
+(define i (read-lines "files/1.txt" (lambda (x) (string->number x))))
+
+(display (part-1 i i i)) (newline)
+(display (part-2 i i i i)) (newline)

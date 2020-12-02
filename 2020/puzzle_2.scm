@@ -1,25 +1,9 @@
-(define (read-lines . args)
-  (let ((p (cond ((string? (car args)) (open-input-file (car args))))))
-    (let loop ((line (read-line p)) (lines (list)))
-      (if (eof-object? line)
-        (begin
-          (if (and (pair? args) (string? (car args)))
-            (close-input-port p))
-          (reverse lines))
-        (loop (read-line p) (cons line lines))))))
-
 (define (string-index str chr idx)
   (if (not (null? str))
     (if (char=? (car (string->list str)) chr)
       idx
       (string-index (list->string (cdr (string->list str))) chr (+ idx 1)))
     -1))
-
-(define (char-count str chr count)
-  (if (not (= 0 (string-length str)))
-      (char-count (list->string (cdr (string->list str))) chr
-        (if (char=? (car (string->list str)) chr)(+ count 1) count))
-    count))
 
 (define (valid-password entry policy)
   (let
@@ -38,6 +22,12 @@
     (loop (cdr entries) policy))
     0))
 
+(define (char-count str chr count)
+  (if (not (= 0 (string-length str)))
+      (char-count (list->string (cdr (string->list str))) chr
+        (if (char=? (car (string->list str)) chr)(+ count 1) count))
+    count))
+
 (define policy-1
   (lambda (s c i j)
     (let ((count (char-count s c 0)))
@@ -48,7 +38,8 @@
     (if (not (equal? (char=? (string-ref s (- i 1)) c)
         (char=? (string-ref s (- j 1)) c))) 1 0)))
 
-(define input (read-lines "files/2.txt"))
+(load "read_lines.scm")
+(define input (read-lines "files/2.txt" (lambda (x) x)))
 
-(loop input policy-1)
-(loop input policy-2)
+(display (loop input policy-1)) (newline)
+(display (loop input policy-2)) (newline)
