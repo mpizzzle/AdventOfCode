@@ -1,23 +1,21 @@
 (define (string-idx str chr)
-  (- (length (string->list str)) (length (memq chr (string->list str)))))
+  (- (string-length str) (length (memq chr (string->list str)))))
 
 (define (char-count str chr)
-  (apply + (map (lambda (b) (if b 1 0))(map (lambda (c) (char=? c chr)) (string->list str)))))
+  (apply + (map (lambda (b) (if b 1 0)) (map (lambda (c) (char=? c chr)) (string->list str)))))
 
 (define (validate-passwords entries policy)
-  (if (not (null? entries))
-    (+ (let
-      ((idx (string-idx (car entries) #\-))
-       (idx2 (string-idx (car entries) #\space))
-       (entry (car entries)))
+  (apply + (map (lambda (entry)
+    (let
+      ((idx (string-idx entry #\-))
+       (jdx (string-idx entry #\space)))
       (let
         ((i (string->number (substring entry 0 idx)))
-         (j (string->number (substring entry (+ idx 1) idx2)))
-         (c (string-ref entry (+ idx2 1)))
-         (s (substring entry (+ idx2 4) (string-length entry))))
-        (policy s c i j)))
-      (validate-passwords (cdr entries) policy))
-    0))
+         (j (string->number (substring entry (+ idx 1) jdx)))
+         (c (string-ref entry (+ jdx 1)))
+         (s (substring entry (+ jdx 4) (string-length entry))))
+        (policy s c i j))))
+      entries)))
 
 (define policy-1
   (lambda (s c i j)
