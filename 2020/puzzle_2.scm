@@ -1,36 +1,27 @@
-(define (string-index str chr idx)
-  (if (not (null? str))
-    (if (char=? (car (string->list str)) chr)
-      idx
-      (string-index (list->string (cdr (string->list str))) chr (+ idx 1)))
-    -1))
+(define (string-idx str chr)
+  (- (length (string->list str)) (length (memq chr (string->list str)))))
 
-(define (valid-password entry policy)
-  (let
-    ((idx (string-index entry #\- 0))
-     (idx2 (string-index entry #\space 0)))
-    (let
-      ((i (string->number (substring entry 0 idx)))
-       (j (string->number (substring entry (+ idx 1) idx2)))
-       (c (string-ref entry (+ idx2 1)))
-       (s (substring entry (+ idx2 4) (string-length entry))))
-      (policy s c i j))))
+(define (char-count str chr)
+  (apply + (map (lambda (b) (if b 1 0))(map (lambda (c) (char=? c chr)) (string->list str)))))
 
-(define (loop entries policy)
+(define (validate-passwords entries policy)
   (if (not (null? entries))
-    (+ (valid-password (car entries) policy)
-    (loop (cdr entries) policy))
+    (+ (let
+      ((idx (string-idx (car entries) #\-))
+       (idx2 (string-idx (car entries) #\space))
+       (entry (car entries)))
+      (let
+        ((i (string->number (substring entry 0 idx)))
+         (j (string->number (substring entry (+ idx 1) idx2)))
+         (c (string-ref entry (+ idx2 1)))
+         (s (substring entry (+ idx2 4) (string-length entry))))
+        (policy s c i j)))
+      (validate-passwords (cdr entries) policy))
     0))
-
-(define (char-count str chr count)
-  (if (not (= 0 (string-length str)))
-      (char-count (list->string (cdr (string->list str))) chr
-        (if (char=? (car (string->list str)) chr)(+ count 1) count))
-    count))
 
 (define policy-1
   (lambda (s c i j)
-    (let ((count (char-count s c 0)))
+    (let ((count (char-count s c)))
       (if (and (>= count i) (<= count j)) 1 0))))
 
 (define policy-2
@@ -41,5 +32,5 @@
 (load "read_lines.scm")
 (define input (read-lines "files/2.txt" (lambda (x) x)))
 
-(display (loop input policy-1)) (newline)
-(display (loop input policy-2)) (newline)
+(display (validate-passwords input policy-1)) (newline)
+(display (validate-passwords input policy-2)) (newline)
