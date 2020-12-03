@@ -3,9 +3,10 @@
 
 (define (count-trees tree-map x y x-offset y-offset)
   (if (not (null? tree-map))
-    (+ (if (= (modulo y y-offset) 0)
-      (+ (check-slice (car tree-map) x)) 0)
-      (count-trees (cdr tree-map) (if (= (modulo y y-offset) 0) (+ x x-offset) x) (+ y 1) x-offset y-offset))
+    (let ((parity (= (modulo y y-offset) 0)))
+      (+ (if parity
+        (+ (check-slice (car tree-map) x)) 0)
+        (count-trees (cdr tree-map) (+ x (if parity x-offset 0)) (+ y 1) x-offset y-offset)))
     0))
 
 (load "read_lines.scm")
