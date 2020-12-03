@@ -11,11 +11,7 @@
 
 (load "read_lines.scm")
 (define input (read-lines "files/3.txt" (lambda (x) x)))
+(define slopes '((1 1) (3 1) (5 1) (7 1) (1 2)))
 
 (display (count-trees input 0 0 3 1)) (newline)
-
-(display (* (count-trees input 0 0 1 1)
-            (count-trees input 0 0 3 1)
-            (count-trees input 0 0 5 1)
-            (count-trees input 0 0 7 1)
-            (count-trees input 0 0 1 2))) (newline)
+(display (apply * (map (lambda (x) (count-trees input 0 0 (car x) (car (cdr x)))) slopes))) (newline)
