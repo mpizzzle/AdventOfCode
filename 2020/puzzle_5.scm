@@ -1,14 +1,7 @@
-(define (pow x y)
-  (define p
-    (lambda (x y t)
-      (cond ((= y 0) t)
-            ((> y 0) (p x (- y 1) (* x t))))))
-  (p x y 1))
-
 (define (get-partition partition chr)
   (if (not (null? partition))
     (if (char=? (car partition) chr)
-      (+ (get-partition (cdr partition) chr) (pow 2 (- (length partition) 1)))
+      (+ (get-partition (cdr partition) chr) (expt 2 (- (length partition) 1)))
       (get-partition (cdr partition) chr))
     0))
 
