@@ -2,7 +2,8 @@
 
 input← ⎕FIO[49] 'files/2.txt'
 
-c← { +/⍺ { 1 ⍴ (⍺ = ⍵) × ⍎⍵[⍴ ⍵] } ¨ ⍵ }
-('f' c input) × (('d' c input) - ('u' c input)) ⍝ part 1
+x← { +/⍵ { 1 ⍴ (⍺ = ⍵) × ⍎⍵[⍴ ⍵] } ¨ input } ¨ 'fdu'
+
+x[1] × (x[2] - x[3]) ⍝ part 1
 
 )OFF
