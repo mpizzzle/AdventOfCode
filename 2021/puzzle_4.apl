@@ -4,11 +4,11 @@ input← ⎕FIO[49] 'files/4.txt'
 
 numbers← 1 + ⍎↑ input
 table_rows← 1 + ⍎ ¨ ((⍴ s) ⍴ ⍉ ∊ { 0 < ⍴ ⍵ } ¨ s) / s← 1↓ input
-t← {⊃ (⊂ (⍵ × 5) + ⍳5)⌷ table_rows} ¨ 1 -⍨ ⍳5 ÷⍨ ⍴ table_rows
+t← {⊃ table_rows ⌷⍨⊂ (⍵ × 5) + ⍳5} ¨ 1 -⍨ ⍳5 ÷⍨ ⍴ table_rows ⍝ table matrices
 
-p← { { (1++/+⌿⍵ - 0 >⍨ ⍵ ) × {(0 ∊ +⌿⊃ ⍵ )∨ 0 ∊ +/⊃ ⍵ } ⍵ } ¨ ⍵ } ⍝  calculate winner
-b← { ⊃ { ⍵ × ⍺ ≠ ⍵ }/(⌽ ⍵ ↑ numbers),⊂ t } ⍝  calculate reduced bingo round
-w← { ⍵ /1 i⍴ ⍳i← ≢ ⍵ } ⍝  where (⍸)
+p← { { (1++/+⌿⍵ - 0 >⍨ ⍵ ) × {(0 ∊ +⌿⊃ ⍵ )∨ 0 ∊ +/⊃ ⍵ } ⍵ } ¨ ⍵ } ⍝ calculate winners
+b← { ⊃ { ⍵ × ⍺ ≠ ⍵ }/(⌽ ⍵ ↑ numbers),⊂ t } ⍝ calculate reduced bingo round
+w← { ⍵ /1 i⍴ ⍳i← ≢ ⍵ } ⍝ where (⍸)
 
 all← {p b ⍵ } ¨ ⍳⍴ numbers
 
