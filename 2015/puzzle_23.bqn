@@ -10,7 +10,7 @@ labels ← "hlf"‿"tpl"‿"inc"‿"jmp"‿"jie"‿"jio"
 instructions ← ("÷2"⊸S)‿("×3"⊸S)‿("+1"⊸S)‿(1⊑⊢)‿(e⊸J)‿(o⊸J)
 
 Partition ← ' '((⊢-˜+`×¬)∘=⊔⊢)⊢/˜','≠⊢
-GetInstruction ← { f ← (⊑ instructions /˜ labels ∊ ⊢) 𝕩 ⋄ F 𝕩 }
+GetInstruction ← (/labels∊⊢) ◶ instructions
 
 program ← GetInstruction∘Partition ¨ input
 
