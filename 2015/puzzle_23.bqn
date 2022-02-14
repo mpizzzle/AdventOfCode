@@ -9,7 +9,7 @@ even‿one ← "((1=2⊸|)+⊣×0=2⊸|)˜("‿"(1⊸≠+⊣×1⊸=)˜("
 labels ← "hlf"‿"tpl"‿"inc"‿"jmp"‿"jie"‿"jio"
 instructions ← ("÷2"⊸S)‿("×3"⊸S)‿("+1"⊸S)‿(1⊑⊢)‿(even⊸J)‿(one⊸J)
 
-Partition ← ' '((⊢-˜+`×¬)∘=⊔⊢)⊢/˜','≠⊢
+Partition ← ' '((⊢-˜+`×¬)∘=⊔⊢)','⊸≠⊸/
 GetInstruction ← (/labels∊⊢) ◶ instructions
 
 program ← GetInstruction∘Partition ¨ input
@@ -17,7 +17,7 @@ program ← GetInstruction∘Partition ¨ input
 Execute ← {
   repl ← •ReBQN {repl ⇐ "strict"}
   REPL ¨ 𝕨
-  ((REPL∘(program ⊑˜ ⊢)+⊢) ⍟ 𝕩) 0
+  (REPL∘⊑⟜program⊸+ ⍟ 𝕩) 0
   •Show REPL "b"
 }
 
