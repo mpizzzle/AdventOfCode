@@ -3,8 +3,10 @@
 input ← •FLines "files/14.txt"
 
 Split ← ' '((⊢-˜+`×¬)∘=⊔⊢)⊢
-Strip ← •BQN ¨ ((0∾˜/⁼ 3‿6‿13) / ⊢)
-Sequence ← (1⊸⊑⥊0⊸⊑)∾0⥊˜2⊸⊑
-Sum ← +´2503⥊⊢
+Format ← •BQN ¨ ((0∾˜/⁼3‿6‿13)/⊢)
+Sequence ← 2503⥊(1⊸⊑⥊0⊸⊑)∾0⥊˜2⊸⊑
 
-⌈´Sum∘Sequence∘Strip∘Split ¨ input # part 1
+pattern ← Sequence∘Format∘Split ¨ input
+
+•Show ⌈´+´¨ pattern # part 1
+•Show ⌈´+˝(⌈´=⊢)˘⍉>+`¨ pattern # part 2
