@@ -2,12 +2,10 @@
 
 input ← •BQN ¨ •FLines "files/24.txt"
 
-UniquePairs ← <⌜˜/○⥊∾⌜˜
-DimensionUp ← (⍷∧¨)(>¬∘∊⌜)/○⥊∾⌜
-GetDimension ← { 𝕩 DimensionUp ⍟ 𝕨 UniquePairs 𝕩 }
-FilterByWeight ← ⊢/˜⊣=(+´¨⊢)
-QuantumSort ← (⍋×´¨)⊸⊏
+GetDimension ← { 𝕩 ((⍷∧¨)(>¬∘∊⌜)/○⥊∾⌜) ⍟ 𝕨 (<⌜˜/○⥊∾⌜˜) 𝕩 }
+FilterByWeight ← ⊢/˜⊣=+´¨∘⊢
 GetWeighting ← ⊣÷˜+´∘⊢
+GetCandidate ← ×´∘⊑ ⊑∘⊣⊸GetWeighting FilterByWeight ⊑∘⌽∘⊣⊸GetDimension
 
-•Show ×´⊑ QuantumSort (3 GetWeighting input) FilterByWeight 4 GetDimension input # part 1
-•Show ×´⊑ QuantumSort (4 GetWeighting input) FilterByWeight 2 GetDimension input # part 2
+•Show 3‿4 GetCandidate input # part 1
+•Show 4‿2 GetCandidate input # part 2
