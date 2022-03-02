@@ -19,4 +19,4 @@ potentials ← ∧ (Identity people) ∾˜ >Truncate∘Replace∘Strip¨ input
 perms ← Permutations ≠ people
 
 •Show ⌈´ (people⊸Neighbours (+´+´∘Arrangement˘) potentials⊸Filter)˘ perms # part 1
-•Show ⌈´ (RemoveWorst∘Flip people⊸Neighbours Arrangement˘ { 𝕩⊸Align˘(potentials⊸Filter) 𝕩 })˘ perms # part 2
+•Show ⌈´ (RemoveWorst∘Flip people⊸Neighbours Arrangement˘ (≠/≍) Align˘ potentials⊸Filter)˘ perms # part 2
