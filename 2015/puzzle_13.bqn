@@ -8,12 +8,15 @@ Truncate ← { (⊑𝕩)‿(•BQN (∾´1‿2⊸⊏) 𝕩)‿(⊑⌽𝕩) }
 Permutations ← (≍↕0){∾˝(0∾˘1+𝕩)⊸⊏∘⍒˘=⌜˜↕𝕨}´-⟜↕
 Neighbours ← (⍉∘> ¯1⊸⌽ ∾○< 1⊸⌽)∘⊏˜
 Arrangement ← 1⊸⊑¨ ⊢ /˜ ⊣ ∊˜ ⊑∘⌽¨∘⊢
-Filter ← <˘˘ ⊢ ⊏ ((⊢⊏˜(/0=7|↕∘≠)) 7↕⊣)
+Filter ← <⎉1 ⊢ ⊏ ((⊢⊏˜(/0=8|↕∘≠)) 8↕⊣)
 RemoveWorst ← +´∘(⊢/˜⊢≠⌊´) +´˘∘⍉∘(1⊸⌽ ⌾ ⊏)∘⍉
+Identity ← ⍉⊢∾↕∘≠∾≍
+Align ← ⌽¨⊣⊏∧∘(⌽¨)∘⊢
+Flip ← ⌽˘ ⌾ (0‿¯1⊸⊏)
 
-potentials ← >Truncate∘Replace∘Strip¨ input
 people ← ⍷ ⊑¨ input
+potentials ← ∧ (Identity people) ∾˜ >Truncate∘Replace∘Strip¨ input
 perms ← Permutations ≠ people
 
 •Show ⌈´ (people⊸Neighbours (+´+´∘Arrangement˘) potentials⊸Filter)˘ perms # part 1
-#•Show ⌈´ (RemoveWorst people⊸Neighbours Arrangement˘ potentials⊸Filter)˘ perms # part 2
+•Show ⌈´ (RemoveWorst∘Flip people⊸Neighbours Arrangement˘ { 𝕩⊸Align˘(potentials⊸Filter) 𝕩 })˘ perms # part 2
