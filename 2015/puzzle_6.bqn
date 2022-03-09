@@ -12,7 +12,7 @@ V‿H ← {(⊑𝕩)⊸↓∘⍉ (⊑⌽𝕩)⊸↓}‿{(⊑𝕩)⊸↑∘⍉ (�
 Apply ← { (⊑⌽𝕨) ⌾ ((V ⌽⊑𝕨) ∘ (H 1+1⊑𝕨)) 𝕩 }
 Total ← +´(+´˘ grid Apply´ ∾¨)
 
-c ← Coords ∘ Split ∘ Format ¨ input
+c ← Coords∘Split∘Format¨ input
 
 •Show c Total ⟨ 1¨, 0¨, ¬ ⟩⊸Ins¨ input # part 1
 •Show c Total ⟨ 1⊸+, 0⌈1-˜⊢, 2⊸+ ⟩⊸Ins¨ input # part 2
