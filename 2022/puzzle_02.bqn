@@ -1,12 +1,10 @@
 #! /usr/bin/env BQN
 
-Split ← ' '⊸((⊢-˜+`×¬)∘=⊔⊢)
-input ← Split ¨ •FLines "files/2.txt"
+input ← <˘ ⍉ "AX" -˜ ⍉> 0‿2⊸⊏¨ •FLines "files/2.txt"
 
-Win ← ⊣=1+3|⊢
-Score ← { (6⊸×÷+´) (⊢=⌈´) (Win∾Win˜)´ 𝕩 }
-GetTotals ← (⊢+Score)∘{ ∾<∘(1+/∘⍷˜)´˘⍉> ⟨"ABC","XYZ"⟩‿𝕩 }
-ChooseCounter ← ⊣ { (𝕨 /∘⍷ "ABC") ⊏ 𝕏 "XYZ" } (¯1⊸⌽)‿⊢‿(1⊸⌽) ⊑˜ (/"XYZ"⍷˜⊢)
+Win ← ⊣=3|1⊸+
+GetTotals ← (6⊸×÷+´)∘(⊢=⌈´)∘(Win∾Win˜)´+1⊸+ 
+ChooseCounter ← ⊑∾(⊣⊑(↕3)⌽˜1-˜⊢)´
 
->+˝GetTotals¨ input # part 1
->+˝GetTotals∘(ChooseCounter´ ≍∘⊣ ⌾ (¯1⊸⊑) ⊢)¨ input # part 2
+•Show >+˝GetTotals¨ input # part 1
+•Show >+˝GetTotals∘ChooseCounter¨ input # part 2
