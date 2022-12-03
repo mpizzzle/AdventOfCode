@@ -2,10 +2,8 @@
 
 input ← •FLines "files/3.txt"
 
-Partition ← (÷⟜2≤↕)∘≠⊸⊔
 Intersect ← ⊑(∊/⊣)´
 Priority ← (+´⊢+58×0⊸>) '`'-˜⊢
-Group ← ⊢⊔˜3/(↕3÷˜≠)
 
-•Show Priority Intersect∘Partition¨ input # part 1
-•Show Priority Intersect¨ Group input # part 2
+•Show Priority Intersect∘((÷⟜2≤↕)∘≠⊸⊔)¨ input # part 1
+•Show Priority Intersect¨(⊢⊔˜3/(↕3÷˜≠)) input # part 2
