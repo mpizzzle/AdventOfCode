@@ -2,10 +2,10 @@
 
 input ← •FLines "files/4.txt"
 
-Partition ← ('0'+↕10)⊸(∊˜)⊸((¬-˜⊢×·+`»⊸>)⊸⊔)
+Partition ← (¬",-"∊˜⊢)(¬-˜⊢×·+`»⊸>)⊸⊔⊢
 Group ← (2/↕2)⊸⊔
 Parse ← (10⊸×⊸+˜´∘⌽-⟜'0')¨
 Range ← (⌊+(↕1+⌈-⌊))´¨
-Intersect ← (0<(⍷∾⍷˜) ∾○(+´) (∊∾∊˜))´
+Intersect ← ⌈´¨((⍷∾⍷˜)⋈(∊∾∊˜))´
 
-> +˝ Intersect∘Range∘Group∘Parse∘Partition¨ input
+•Show > +˝ Intersect∘Range∘Group∘Parse∘Partition¨ input
