@@ -1,11 +1,10 @@
 #! /usr/bin/env BQN
 
+⟨ToInt, Part⟩ ← •Import "idioms.bqn"
 input ← •FLines "files/4.txt"
 
-Partition ← (¬",-"∊˜⊢)(¬-˜⊢×·+`»⊸>)⊸⊔⊢
 Group ← (2/↕2)⊸⊔
-Parse ← (10⊸×⊸+˜´∘⌽-⟜'0')¨
 Range ← (⌊+(↕1+⌈-⌊))´¨
 Intersect ← ⌈´¨((⍷∾⍷˜)⋈(∊∾∊˜))´
 
-•Show > +˝ Intersect∘Range∘Group∘Parse∘Partition¨ input
+•Show > +˝ Intersect∘Range∘Group∘(ToInt¨)∘((¬",-"∊˜⊢)Part⊢)¨ input

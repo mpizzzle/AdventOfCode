@@ -1,6 +1,6 @@
 #! /usr/bin/env BQN
 
-ParseInt ← (10⊸×⊸+˜´∘⌽-⟜'0')'0'⊸∾
-input ← ParseInt¨•FLines "files/1.txt"
+⟨ToInt, Part⟩ ← •Import "idioms.bqn"
+input ← ToInt¨•FLines "files/1.txt"
 
-•Show (⌈´⋈(+´3↑∨)) (+´¨0⊸<(¬-˜⊢×·+`»⊸>)⊸⊔⊢) input
+•Show (⌈´⋈(+´3↑∨)) (+´¨0⊸<Part⊢) input
