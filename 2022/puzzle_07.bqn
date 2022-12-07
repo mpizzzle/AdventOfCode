@@ -1,13 +1,13 @@
 #! /usr/bin/env BQN
 
-⟨ToInt, Part⟩ ← •Import "idioms.bqn"
+⟨ToInt, Part, Digits⟩ ← •Import "idioms.bqn"
 
-input ← (/¬∘(⌈´"$ ls"⊸⍷)¨)⊸⊏ •FLines "files/7.txt"
-cd ← (⌈´"$ cd"⊸⍷) ¨ input
+input ← •FLines "files/7.txt"
+dirs ← "$ cd"⊸(⌈´⊣⊸⍷)¨ input
 
-dirs ← (((¯1×1-˜≠)∘⊢↓⊣)∾((1-˜≠)∘⊢↓⊢))` cd Part input 
-totals ← (+´(ToInt⊢⊏˜(/('0'+↕10)∊˜⊢))¨)¨ cd ¬⊸Part input 
-results ← <∘(+´totals ⊏˜/)˘ (1×+´∘⍷)⌜˜ dirs
+traversed ← (((1-≠)∘⊢↓⊣)∾((1-˜≠)∘⊢↓⊢))` dirs Part input
+totals ← +´¨(ToInt/∘Digits⊸⊏)¨¨ dirs ¬⊸Part input
+results ← <∘(+´totals ⊏˜/)˘ (1×+´∘⍷)⌜˜ traversed
 
 •Show +´ (/⊢ ≤ 100000˙)⊸⊏˜ results # part 1
 •Show ⌊´ (/⊢ ≥ 40000000 -˜ ⊑)⊸⊏˜ results # part 2

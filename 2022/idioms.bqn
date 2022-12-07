@@ -8,3 +8,6 @@ Part ⇐ (¬-˜⊢×·+`»⊸>)⊸⊔
 
 # Remove trailing and duplicate blanks
 Trim ⇐ (∨⟜«' '⊸≠)⊸/
+
+# Return boolean array where 1s are digits 0-9 in ⊢
+Digits ⇐ ∊⟜('0'+↕10)
