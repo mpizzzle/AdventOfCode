@@ -3,10 +3,9 @@
 ⟨ToInt, Split⟩ ← •Import "idioms.bqn"
 
 input ← ' '⊸Split¨ •FLines "files/9.txt"
-dirs ← ⟨0‿1,0‿¯1,¯1‿0,1‿0⟩
-labels ← "UDLR"
+d‿l ← ⟨0‿1,0‿¯1,¯1‿0,1‿0⟩‿"UDLR"
 
-Parse ← ∾(ToInt∘⊑∘⌽ / ⋈∘(dirs ⊑˜ (/labels ⍷˜ ⊑)))¨
+Parse ← ∾(ToInt∘⊑∘⌽ / ⋈∘(d⊑˜/)∘(l⍷˜⊑))¨
 Tail ← (⊣ - ((0⊸≠×1-˜2×0⊸≤) × (⌈´1<|))∘(-´⊣⋈>∘⊢))`
 
 t1 ← Tail +` ⟨0‿0⟩ ∾ Parse input
