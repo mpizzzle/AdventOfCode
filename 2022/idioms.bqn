@@ -11,3 +11,6 @@ Trim ⇐ (∨⟜«' '⊸≠)⊸/
 
 # Return boolean array where 1s are digits 0-9 in ⊢
 Digits ⇐ ∊⟜('0'+↕10)
+
+# Split ⊢ at occurrences of separators ⊣, removing the separators
+Split ⇐ (⊢-˜+`×¬)∘=⊔⊢
