@@ -14,3 +14,6 @@ Digits ⇐ ∊⟜('0'+↕10)
 
 # Split ⊢ at occurrences of separators ⊣, removing the separators
 Split ⇐ (⊢-˜+`×¬)∘=⊔⊢
+
+# Split ⊢ into groups of length ⊣, plus a shorter one at the end if needed
+Group ⇐ ⌊∘÷˜⟜(↕≠)⊔⊢
