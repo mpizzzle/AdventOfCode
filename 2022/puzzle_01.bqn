@@ -1,6 +1,6 @@
 #! /usr/bin/env BQN
 
-⟨ToInt, Part⟩ ← •Import "idioms.bqn"
-input ← ToInt¨ •FLines "files/1.txt"
+⟨ToNat, Part⟩ ← •Import "idioms.bqn"
+input ← ToNat¨ •FLines "files/1.txt"
 
 •Show (⌈´⋈(+´3↑∨)) +´¨ (0⊸<Part⊢) input

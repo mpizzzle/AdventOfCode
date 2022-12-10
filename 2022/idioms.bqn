@@ -1,7 +1,12 @@
 #! /usr/bin/env BQN
 
+Nat ← 10⊸×⊸+˜´∘⌽-⟜'0'
+
 # Parse natural number from string (zero on empty)
-ToInt ⇐ (10⊸×⊸+˜´∘⌽-⟜'0')'0'⊸∾
+ToNat ⇐ Nat'0'⊸∾
+
+# Parse integer from string
+ToInt ⇐ ('-'=⊑)⊸(Nat∘↓ × 1-˜2×¬∘⊣)
 
 # Cut ⊢ at 0s in ⊣, giving a slice for each group of 1s
 Part ⇐ (¬-˜⊢×·+`»⊸>)⊸⊔

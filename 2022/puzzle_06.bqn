@@ -2,4 +2,4 @@
 
 input ← ⊑ •FLines "files/6.txt"
 
-•Show input⊸(⊑/∘(⌊´∘∊˘↕˜)+⊢)¨ 4‿14 
+•Show input⊸(⊑/∘(⌊´∘∊˘↕˜)+⊢)¨ 4‿14
