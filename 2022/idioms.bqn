@@ -22,3 +22,6 @@ Split ⇐ (⊢-˜+`×¬)∘=⊔⊢
 
 # Split ⊢ into groups of length ⊣, plus a shorter one at the end if needed
 Group ⇐ ⌊∘÷˜⟜(↕≠)⊔⊢
+
+# Least Common Muliple of natural numbers ⊣ and ⊢
+LCM ⇐ (×÷{𝕨(|𝕊⍟(>⟜0)⊣)𝕩})
