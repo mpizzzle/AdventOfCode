@@ -25,3 +25,6 @@ Group ⇐ ⌊∘÷˜⟜(↕≠)⊔⊢
 
 # Least Common Muliple of natural numbers ⊣ and ⊢
 LCM ⇐ (×÷{𝕨(|𝕊⍟(>⟜0)⊣)𝕩})
+
+# Apply 𝔽 to ⊢ repeatedly until 𝔾 returns 0 (avoiding stack overflow)
+_while_ ⇐ {𝔽⍟𝔾∘𝔽_𝕣_𝔾∘𝔽⍟𝔾𝕩}
