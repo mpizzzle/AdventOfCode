@@ -2,12 +2,7 @@
 
 input ← > '0' -˜ •FLines "files/8.txt"
 
-Trees ← (0=⊒˘) ⌈`˘
-
-l ← Trees input
-r ← ⌽˘ Trees ⌽˘ input
-u ← ⍉ Trees ⍉ input
-d ← ⍉ ⌽˘ Trees ⌽˘ ⍉ input
+T ← 0=(⊒⌈`)˘
 
 Scenic ← {
   row‿col ← 𝕨 (⊑⊸⊏ ⋈ (1⊸⊑)⊸(⊏˘)) 𝕩
@@ -20,5 +15,5 @@ Scenic ← {
   ×´∾ (⥊0⊸∊+·+´×`)∘(1 ↓ ⊑⊸>)¨ n‿e‿s‿w
 }
 
-•Show +´+˝∨´ l‿r‿u‿d # part 1
+•Show +´+˝ (T ∨ T⌾(⌽˘) ∨ T⌾⍉ ∨ T⌾(⌽˘⍉)) input # part 1
 •Show ⌈´⌈˝ (input Scenic˜ ⋈)⌜˜ ↕≠input # part 2
