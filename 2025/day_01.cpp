@@ -1,17 +1,15 @@
 #include <fstream>
-#include <iostream>
-#include <string>
+#include <ranges>
 
 #include "puzzles.h"
 
 int parse(auto f) {
-    std::ifstream input_file;
-    input_file.open("files/1.txt");
-    std::string buffer;
+    std::ifstream file;
+    file.open("files/1.txt");
     int count = 0, pos = 50;
 
-    while (std::getline(input_file, buffer)) {
-        int mag = std::atoi(buffer.substr(1, buffer.size()).c_str());
+    for (auto& buffer : std::views::istream<std::string>(file)) {
+        int mag = std::stoi(buffer.substr(1));
         int offset = (mag % 100) * (buffer.front() == 'L' ? -1 : 1);
         int newpos = (pos + 100 + offset) % 100;
         count += f(newpos, pos, mag, offset);
