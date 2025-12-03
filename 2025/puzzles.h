@@ -7,4 +7,7 @@ public:
 
     long day_02_1();
     long day_02_2();
+
+    long day_03_1();
+    long day_03_2();
 };
