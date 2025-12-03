@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cmath>
 #include <fstream>
+#include <ranges>
 #include <vector>
 
 #include "puzzles.h"
@@ -14,20 +15,20 @@ long parse(long bank_length) {
     file.open("files/3.txt");
 
     while (std::getline(file, buffer)) {
-        std::vector<long> batteries;
+        std::vector<long> batteries(buffer.length());
         std::transform(buffer.begin(), buffer.end(), std::back_inserter(batteries), atol);
         std::vector<long> bank(batteries.begin(), batteries.begin() + bank_length);
 
-        for (unsigned long i = bank_length; i < buffer.size(); ++i) {
+        for (long b : batteries | std::views::drop(bank_length)) {
             for (long j = 0; j < bank_length - 1; ++j) {
                 if (bank[j] < bank[j + 1]) {
                     bank.erase(bank.begin() + j);
-                    bank.push_back(batteries[i]);
+                    bank.push_back(b);
                     break;
                 }
             }
 
-            bank.back() = std::max(bank.back(), batteries[i]);
+            bank.back() = std::max(bank.back(), b);
         }
 
         for (unsigned long i = 0; i < bank.size(); ++i) {
