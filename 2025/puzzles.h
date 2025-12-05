@@ -10,4 +10,10 @@ public:
 
     long day_03_1();
     long day_03_2();
+
+    int day_04_1();
+    int day_04_2();
+
+    long day_05_1();
+    long day_05_2();
 };
